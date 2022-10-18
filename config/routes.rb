@@ -24,6 +24,7 @@ end
 
 namespace :public do
   resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
+  resources :cart_items, only:[:index, :update, :destroy, :create]
   end
 
 
