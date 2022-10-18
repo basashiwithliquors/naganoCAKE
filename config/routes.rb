@@ -31,7 +31,12 @@ namespace :public do
   resources :items, only: [:index, :show]
 end
 
+# top
+root 'public/homes#top'
+# about
+get '/about' => 'public/homes#about', as: 'about'
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  
+
 end
