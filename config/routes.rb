@@ -16,4 +16,8 @@ namespace :public do
   resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+  namespace :admin do
+    resources :genres, only: [:index, :create, :edit,update]
+  end
 end
