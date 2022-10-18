@@ -19,11 +19,13 @@ namespace :admin do
     resources :order_items, only: [:update]
   end
   resources :genres, only: [:index, :create, :edit, :update]
+  resources :items, except: [:destroy]
 end
 
 
 namespace :public do
   resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
+  resources :items, only: [:index, :show]
   end
 
 
