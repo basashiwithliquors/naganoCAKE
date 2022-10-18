@@ -12,4 +12,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+  namespace :admin do
+    resources :genres, only: [:index, :create, :edit,update]
+  end
 end
