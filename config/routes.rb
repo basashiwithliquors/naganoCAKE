@@ -13,6 +13,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
+root to: "public/homes#top"
 
 namespace :admin do
   resources :orders, only: [:show, :update] do
@@ -24,6 +25,7 @@ end
 
 
 namespace :public do
+  get 'about' => "homes#about"
   resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
   resources :cart_items, only:[:index, :update, :destroy, :create]
   resources :items, only: [:index, :show]
