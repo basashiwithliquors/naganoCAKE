@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_18_044812) do
+
+ActiveRecord::Schema.define(version: 2022_10_18_044954) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -58,6 +59,17 @@ ActiveRecord::Schema.define(version: 2022_10_18_044812) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "items", force: :cascade do |t|
+    t.integer "genre_id", null: false
+    t.string "name", null: false
+    t.text "description", null: false
+    t.integer "price_without_tax", null: false
+    t.boolean "is_active", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_items_on_genre_id"
+  end
+
   create_table "order_items", force: :cascade do |t|
     t.integer "order_id", null: false
     t.integer "item_id", null: false
@@ -91,5 +103,6 @@ ActiveRecord::Schema.define(version: 2022_10_18_044812) do
     t.index ["customer_id"], name: "index_shipping_addresses_on_customer_id"
   end
 
+  add_foreign_key "items", "genres"
   add_foreign_key "shipping_addresses", "customers"
 end

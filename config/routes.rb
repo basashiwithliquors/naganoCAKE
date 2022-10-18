@@ -19,13 +19,15 @@ namespace :admin do
     resources :order_items, only: [:update]
   end
   resources :genres, only: [:index, :create, :edit, :update]
+  resources :items, except: [:destroy]
 end
 
 
 namespace :public do
   resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
   resources :cart_items, only:[:index, :update, :destroy, :create]
-  end
+  resources :items, only: [:index, :show]
+end
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
