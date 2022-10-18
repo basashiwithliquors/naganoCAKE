@@ -1,28 +1,40 @@
 <div class='container'>
-  <div class="d-inline-block m-3" style="background-color: #eee;">
-    <h2>ログイン</h2>
+  <div class="d-inline-block px-3 m-3" style="background-color: #eee;">
+    <h2 class="m-0">ログイン</h2>
   </div>
 
-  <div class="mx-auto" style="width: 500px;">
-    <p>会員の方はこちらからログイン</p>
+  <div>
+    <div class="d-inline-block mx-5 ">
+      <p class="d-inline-block px-3 mt-3" style="background-color: #eee;">会員の方はこちらからログイン</p>
 
+    <!-- form_withについて＠userをどこのコントローラに記述するか分からない -->
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%= f.label :email,"メールアドレス" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: 'email' %>
-    </div>
+      <table>
+        <tbody>
+          <tr>
+            <td><%= f.label :email,"メールアドレス",style: "padding-left:0px;" %></td>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com",style: "margin-left:40px;", size: "40px" %></td>
+          </tr>
 
-    <div class="field">
-      <%= f.label :password,"パスワード" %>
-      <%= f.password_field :password, autocomplete: "current-password", class: "password" %>
-    </div>
+          <tr>
+            <td><%= f.label :password,"パスワード" %></td>
+            <td><%= f.password_field :password, autocomplete: "current-password",style: "margin-left:40px;", size: "40px" %></td>
+          </tr>
 
-    <div class="actions">
-      <%= f.submit "ログイン",class: 'btn btn-sm btn-primary' %>
-    </div>
+          <tr>
+            <td></td>
+            <td>
+              <div class="actions">
+                <%= f.submit "ログイン",class: 'btn btn-sm btn-primary',style:"font-weight:bold; margin-top:20px; margin-left:40px;" %>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     <% end %>
 
-    <p>会員登録がお済みでない方</p>
-    <p><%= render "public/shared/links" %>から新規登録を行ってください。</p>
+    <p class="d-inline-block px-3 mt-3" style="background-color: #eee;">会員登録がお済みでない方</p>
+    <p><%= link_to "こちら", "/customers/sign_up" %>から新規登録を行ってください。</p>
+    </div>
   </div>
 </div>
