@@ -17,19 +17,19 @@
 
           <h1 class="navbar border border-dark"><strong><%= link_to "naganoCAKE", root_path, class:'text-dark' %></strong></h1>
            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-               
+
             <!--顧客用ヘッダー-->
             <% if customer_signed_in? %>
 
                  <h5 class="ml-5">ようこそ、<%= current_customer.last_name %>さん!</h5>
 
                  <ul class="navbar-nav ml-auto">
-                  <li class ="rounded border border-dark mr-5"><%= link_to "マイページ", class: 'nav-link text-dark' %></li>
+                  <li class ="rounded border border-dark mr-5"><%= link_to "マイページ", new_customer_session_path,class: 'nav-link text-dark' %></li>
                   <li class ="rounded border border-dark mr-5"><%= link_to "商品一覧", public_items_path,class: 'nav-link text-dark' %></li>
                   <li class ="rounded border border-dark mr-5"><%= link_to "カート", public_cart_items_path,class: 'nav-link text-dark' %></li>
                   <li class ="rounded border border-dark mr-5"><%= link_to "ログアウト",  destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %></li>
                 </ul>
-                
+
             <!--管理者用ヘッダー-->
             <% elsif admin_signed_in?  %>
 
@@ -40,7 +40,7 @@
                   <li class ="rounded border border-dark mr-3"><%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark'%></li>
                   <li class ="rounded border border-dark mr-3"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'nav-link text-dark'%></li>
                </ul>
-            
+
             <!--ログイン前ヘッダー-->
             <% else %>
 
@@ -58,13 +58,11 @@
         </nav>
     </header>
     <%= yield %>
-    
     <footer>
       <div class="container">
         <div class="row">
         </div>
       </div>
     </footer>
-    
   </body>
 </html>
