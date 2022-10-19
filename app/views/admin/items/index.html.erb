@@ -1,8 +1,9 @@
 <div class="container">
-  <div class="row my-2">
-    <h4 class="col-11">商品一覧</h4>
-   <%= link_to new_admin_item_path do %>
-   <i class="fas fa-plus-circle fa-2x text-black-50"></i><% end %>
+  <div class="row">
+    <div class="col-11">
+    <h4 class= "my-4 px-4 offset-md-1 d-inline-block", style="background-color: #eee;">商品一覧</h4></div>
+    <%= link_to new_admin_item_path do %>
+    <div class="col-1"><i class="fas fa-plus-circle fa-3x text-black-50 mt-3"></i></div><% end %>
   </div>
   <table class="table table-borderless table-hover">
     <thead class="thead-light border-top">
@@ -18,15 +19,18 @@
       <% @items.each do |item| %>
       <tr>
         <td><%= item.id %></td>
-        <td><%= item.name %></td>
-        <td><%= item.price_without_tax.to_s(:delimited) %></td>
+        <td><u><%= link_to item.name, admin_item_path(item), class: "text-reset" %></u></td>
+        <td><%= item.price_ex_tax %></td>
         <td><%= item.genre.name %>
-        <td class = "font-weight-bold"><% if item.is_active == true %>
-        <div class = "text-success">販売中</div>
-        <% else %><div class = "text-black-50">販売停止中</div><% end %>
+        <td class="font-weight-bold"><% if item.is_active == true %>
+        <div class="text-success">販売中</div>
+        <% else %><div class="text-black-50">販売停止中</div><% end %>
         </td>
       </tr>
       <% end %>
     </tbody>
   </table>
+  <div class="d-flex justify-content-center">
+    <%= paginate @items %>
+  </div>
 </div>
