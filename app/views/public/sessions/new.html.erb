@@ -7,8 +7,7 @@
     <div class="d-inline-block mx-5 ">
       <p class="d-inline-block px-3 mt-3" style="background-color: #eee;">会員の方はこちらからログイン</p>
 
-    <!-- form_withについて＠userをどこのコントローラに記述するか分からない -->
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= form_with model: resource, url: new_customer_session_path do |f| %>
       <table>
         <tbody>
           <tr>
