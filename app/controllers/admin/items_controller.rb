@@ -13,6 +13,10 @@ class Admin::ItemsController < ApplicationController
     end
   end
   
+  def index
+    @items = Item.all
+  end
+  
   def item_params
     params.require(:item).permit(:name, :description, :genre_id, :price_without_tax, :is_active, :image)
   end
