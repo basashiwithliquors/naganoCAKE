@@ -37,7 +37,8 @@ namespace :public do
   resource :customers, only: [:show, :edit, :update]
 end
 
-resources :orders, only: [:new, :index, :create, :show]
+resources :orders, only: [:new, :index, :create, :show, :confirm]
+post 'orders/confirm(/:id)', to: 'orders#confirm', as: 'confirm_order'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 

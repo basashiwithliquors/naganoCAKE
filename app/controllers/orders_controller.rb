@@ -9,6 +9,7 @@ class OrdersController < ApplicationController
 
   def confirm   # 注文情報入力確認画面
     @order = Order.new(order_params)
+    @cart_items = current_customer.cart_items.all
 
     # [:address_option]=="0"のデータ(customerの住所)を呼び出す
     if params[:order][:address_option] == "0"
@@ -27,7 +28,7 @@ class OrdersController < ApplicationController
       
       # 新規住所入力 [:address_option]=="2"としてデータをhtmlから受ける
     elsif params[:order][:address_option] = "2"
-      @order.postcode = params[:order][:shipping_postcode]
+      @order.postcode = params[:order][:postcode]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
     else
@@ -37,15 +38,15 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
+    # @orders = Order.all
   end
 
   def show
-    @order = Order.find(params[:id])
+    # @order = Order.find(params[:id])
   end
 
   def create
-    @order = Order.new(order_params)
+    # @order = Order.new(order_params)
   end
 
   private

@@ -1,6 +1,6 @@
 <h2>注文情報入力</h2>
 
-<h5>支払い方法</h5>
+<h5>支払方法</h5>
 
 <%= form_with model: @order, local: true do |f| %>
   <%= f.radio_button :payment_method, Order.payment_methods.key(0), checked: "checked" %>
