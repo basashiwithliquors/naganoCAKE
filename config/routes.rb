@@ -32,7 +32,11 @@ end
 namespace :public do
   get 'about' => "homes#about", as: 'about'
   resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
-  resources :cart_items, only:[:index, :update, :destroy, :create]
+  resources :cart_items, only:[:index, :update, :destroy, :create] do
+    collection do
+      delete 'destroy_all'
+    end
+  end
   resources :items, only: [:index, :show]
 end
 
