@@ -13,6 +13,12 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
+# root to: "public/homes#top"
+# top
+root 'public/homes#top'
+# about
+# get 'about' => 'public/homes#about'
+
 
 namespace :admin do
   resources :orders, only: [:show, :update] do
@@ -24,12 +30,14 @@ end
 
 
 namespace :public do
+  get 'about' => "homes#about", as: 'about'
   resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
   resources :cart_items, only:[:index, :update, :destroy, :create]
   resources :items, only: [:index, :show]
 end
 
 
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  
+
 end
