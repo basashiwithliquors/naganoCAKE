@@ -31,16 +31,16 @@
           <% @items.each do |item| %>
             <div class="mr-4 mt-4">
              <%= link_to admin_item_path(item) do %>
-               <%= image_tag item.get_item_image, size:"200x120" %>
+               <%= image_tag item.get_image, size:"200x120" %>
              <% end %>
              <p class="text-center"><strong><%= item.name %></strong></p>
-             <p class="text-center"><strong>￥<%= item.with_tax_price.to_s(:dalimited) %></strong></p>
+             <p class="text-center"><strong>￥<%= item.price_in_tax %></strong></p>
             </div>
           <% end %>
         </div>
 
         <p class="text-right">
-            <strong><%= link_to "全ての商品を見る>", admin_items_path %></strong></p>
+            <strong><%= link_to "全ての商品を見る>", public_items_path %></strong></p>
       </div>
     </div>
   </div>
