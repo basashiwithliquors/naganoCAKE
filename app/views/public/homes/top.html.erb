@@ -1,2 +1,46 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container mt-5 h-75">
+  <div class="row">
+    <div class="mx-auto col-9 col-sm-10 col-lg-8 col-xl-6'">
+      <div class = "top-image text-left">
+        <%= image_tag "c3.png" , size:"800x450", style:"position: relative;" %>
+          <p style="position:absolute; top:115px; left:175px; background-color:rgba(0,0,0,0.3); color:#FFF;">
+            <br>
+            <br/>
+             &ensp; ようこそ、ながのCAKEへ！<br/>
+             &ensp; このサイトは、ケーキ販売のECサイトになります。<br/>
+             &ensp; 会員でない方も商品の閲覧はできますが、<br/>
+             &ensp; 購入には会員登録が必要になります。<br/>
+            <br/>
+          </p>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-9">
+            <table class="table mt-4">
+              <thead>
+                <tr>
+                  <th>新着商品</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+        <div class="contents" style="display:flex; flex-wrap:wrap;">
+
+          <% @items.each do |item| %>
+            <div class="mr-4 mt-4">
+             <%= link_to admin_item_path(item) do %>
+               <%= image_tag item.get_item_image, size:"200x120" %>
+             <% end %>
+             <p class="text-center"><strong><%= item.name %></strong></p>
+             <p class="text-center"><strong>￥<%= item.with_tax_price.to_s(:dalimited) %></strong></p>
+            </div>
+          <% end %>
+        </div>
+
+        <p class="text-right">
+            <strong><%= link_to "全ての商品を見る>", admin_items_path %></strong></p>
+      </div>
+    </div>
+  </div>

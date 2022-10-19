@@ -38,9 +38,10 @@ namespace :public do
     end
   end
   resources :items, only: [:index, :show]
+  resource :customers, only: [:show, :edit, :update]
 end
 
-
+resources :orders, only: [:new, :index, :create, :show]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
