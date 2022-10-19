@@ -34,6 +34,7 @@ namespace :public do
   resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
   resources :cart_items, only:[:index, :update, :destroy, :create]
   resources :items, only: [:index, :show]
+  resource :customers, only: [:show, :edit, :update]
 end
 
 

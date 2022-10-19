@@ -1,23 +1,20 @@
 class Public::CustomersController < ApplicationController
-    
-  def
-    show
+
+  def show
+   @customer = current_customer
   end
-  
-  def
-    edit
+
+  def edit
+   @customer = current_customer
   end
-  
-  def
-    update
+
+  def update
   end
-  
-  def
-    unsubscribe
+
+  def unsubscribe
   end
-  
-  def
-    withdraw
+
+  def withdraw
   end
 
 end
