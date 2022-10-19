@@ -1,0 +1,64 @@
+<%= form_with model: [:admin, item], local: true do |f| %>
+  <div class="form-group row offset-md-2">
+    <div class="col-sm-2">
+      <%= f.label :商品画像 %>
+    </div>
+    <div class="col-sm-6">
+    <%= f.file_field :image, accept: "image/*" %>
+    </div>
+  </div>
+
+  <div class="form-group row offset-md-2">
+    <div class="col-sm-2">
+      <%= f.label :商品名 %>
+    </div>
+    <div class="col-sm-6">
+    <%= f.text_field :name, placeholder: "商品名",class: 'form-control item_title' %>
+    </div>
+  </div>
+  
+  <div class="form-group row offset-md-2">
+    <div class="col-sm-2">
+      <%= f.label :商品説明 %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.text_area :description, placeholder: "ここに説明を記述します", class: 'form-control item_description' %>
+    </div>
+  </div>
+  
+  <div class="form-group row offset-md-2">
+    <div class="col-sm-2">
+      <%= f.label :ジャンル %>
+    </div>
+    <div class="col-sm-6">
+    <%= f.collection_select :genre_id, Genre.all, :id, :name, {prompt: '--選択してください--'}, class: 'form-control item_genre' %>
+    </div>
+  </div>
+  
+  <div class="form-group row offset-md-2">
+    <div class="col-sm-2">
+      <%= f.label :税抜価格 %>
+    </div>
+    <div class="col-sm-6">
+    <%= f.text_field :price_without_tax, placeholder: "1000", class: 'form-control item_price' %>
+    </div>円
+  </div>
+  
+  <div class="form-group row offset-md-2">
+    <div class="col-sm-2">
+      <%= f.label :販売ステータス %>
+    </div>
+    <div class="col-sm-6">
+    <%= f.radio_button :is_active, "true" %>販売中
+    <%= f.radio_button :is_active, "false" %>売切れ
+    </div>
+  </div>
+  
+  <div class="form-group text-center">
+    <% if params[:id] == nil %>
+      <%= f.submit "新規登録", class: 'btn btn-success btn-lg p-2' %>
+    <% else %>
+      <%= f.submit "編集する", class: 'btn btn-success btn-lg p-2' %>
+    <% end %>
+  </div>
+<% end %>
