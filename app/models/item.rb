@@ -23,4 +23,8 @@ class Item < ApplicationRecord
     price_without_tax.to_s(:delimited)
   end
   
+  # 消費税を求めるメソッド
+  def with_tax_price
+    (price_without_tax * 1.1).floor
+  end 
 end
