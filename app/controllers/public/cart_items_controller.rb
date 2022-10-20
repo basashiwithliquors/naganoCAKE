@@ -19,6 +19,7 @@ class Public::CartItemsController < ApplicationController
     redirect_to public_cart_items_path
   end 
   
+  # カート内商品全て削除
   def destroy_all
     @cart_items = CartItem.all
     @cart_items = current_customer.cart_items
@@ -29,7 +30,7 @@ class Public::CartItemsController < ApplicationController
 
   def create
     @cart_item = current_customer.cart_items.new(cart_item_params)
-    # もし元々カート内に「同じ商品」がある場合、「数量を追加」更新・保存する
+    # 追加した商品がカート内に存在するか判別
     if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
         #元々カート内にあるもの「item_id」
         #今追加したparams[:cart_item][:item_id])
