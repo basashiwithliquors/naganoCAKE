@@ -34,7 +34,11 @@ namespace :public do
   resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
   resources :cart_items, only:[:index, :update, :destroy, :create]
   resources :items, only: [:index, :show]
+
   resource :customers, only: [:show, :edit, :update]
+  get "customers/mypage" => "customers#show"
+  get "customers/information/edit" => "customers#edit"
+  patch "customers/information" => "customers#update"
 end
 
 resources :orders, only: [:new, :index, :create, :show]
