@@ -31,7 +31,6 @@ end
 
 namespace :public do
   get 'about' => "homes#about", as: 'about'
-  resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
   resources :cart_items, only:[:index, :update, :destroy, :create]
   resources :items, only: [:index, :show]
 
@@ -43,6 +42,10 @@ end
 
 resources :orders, only: [:new, :index, :create, :show, :confirm]
 post 'orders/confirm(/:id)', to: 'orders#confirm', as: 'confirm_order'
+
+scope module: :public do
+  resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
+end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
