@@ -28,8 +28,7 @@ namespace :admin do
   resources :items, except: [:destroy]
 end
 
-
-namespace :public do
+scope module: :public do
   get 'about' => "homes#about", as: 'about'
   resources :cart_items, only:[:index, :update, :destroy, :create] do
     collection do
@@ -50,10 +49,7 @@ namespace :public do
 
   get "customers/unsubscribe" => "customers#unsubscribe"
   patch "customers/withdraw" => "customers#withdraw"
-end
-
-
-scope module: :public do
+  
   resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
 end
 
