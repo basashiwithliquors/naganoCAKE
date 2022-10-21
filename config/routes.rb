@@ -31,22 +31,29 @@ end
 
 namespace :public do
   get 'about' => "homes#about", as: 'about'
-  resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
   resources :cart_items, only:[:index, :update, :destroy, :create] do
     collection do
       delete 'destroy_all'
     end
   end
+
   resources :items, only: [:index, :show]
 
-  resource :customers, only: [:show, :edit, :update]
+  # resource :customers, only: [:show, :edit, :update]
   get "customers/mypage" => "customers#show"
   get "customers/information/edit" => "customers#edit"
   patch "customers/information" => "customers#update"
+
+  get "customers/unsubscribe" => "customers#unsubscribe"
+  patch "customers/withdraw" => "customers#withdraw"
 end
 
 resources :orders, only: [:new, :index, :create, :show, :confirm]
 post 'orders/confirm(/:id)', to: 'orders#confirm', as: 'confirm_order'
+
+scope module: :public do
+  resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
+end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
