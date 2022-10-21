@@ -52,8 +52,6 @@ namespace :public do
   patch "customers/withdraw" => "customers#withdraw"
 end
 
-resources :orders, only: [:new, :index, :create, :show, :confirm]
-post 'orders/confirm(/:id)', to: 'orders#confirm', as: 'confirm_order'
 
 scope module: :public do
   resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
