@@ -20,6 +20,10 @@ before_action :authenticate_customer!
   end
 
   def withdraw
+    @customer = current_customer
+    @customer.update(is_deleted: false)
+    reset_session
+    redirect_to root_path
   end
 
   private
