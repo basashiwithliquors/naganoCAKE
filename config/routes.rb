@@ -38,6 +38,10 @@ namespace :public do
   end
 
   resources :items, only: [:index, :show]
+  get 'orders/complete', to: 'orders#complete', as: 'complete_order'
+  resources :orders, only: [:new, :index, :create, :show]
+  post 'orders/confirm(/:id)', to: 'orders#confirm', as: 'confirm_order'
+  
 
   # resource :customers, only: [:show, :edit, :update]
   get "customers/mypage" => "customers#show"
