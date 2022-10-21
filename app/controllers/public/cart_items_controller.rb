@@ -10,13 +10,13 @@ class Public::CartItemsController < ApplicationController
   def update
     @cart_item = CartItem.find(params[:id])
     @cart_item.update(cart_item_params)
-    redirect_to public_cart_items_path
+    redirect_to cart_items_path
   end 
   
   def destroy
     @cart_item = CartItem.find(params[:id])
     @cart_item.destroy
-    redirect_to public_cart_items_path
+    redirect_to cart_items_path
   end 
   
   # カート内商品全て削除
@@ -24,7 +24,7 @@ class Public::CartItemsController < ApplicationController
     @cart_items = CartItem.all
     @cart_items = current_customer.cart_items
     current_customer.cart_items.destroy_all
-    redirect_to public_cart_items_path
+    redirect_to cart_items_path
   end 
   
 
@@ -38,10 +38,10 @@ class Public::CartItemsController < ApplicationController
         cart_item.quantity += params[:cart_item][:quantity].to_i
         #cart_item.quantityに今追加したparams[:cart_item][:quantity]を加える
         cart_item.save
-        redirect_to public_cart_items_path
+        redirect_to cart_items_path
     # もしカート内に「同じ」商品がない場合は通常の保存処理
     elsif @cart_item.save
-      redirect_to public_cart_items_path
+      redirect_to cart_items_path
     # 保存できなかった場合  
     else 
       redirect_to request.referer

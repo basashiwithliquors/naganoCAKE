@@ -55,7 +55,7 @@ class Public::OrdersController < ApplicationController
     end #ループ終わり
 
     current_customer.cart_items.destroy_all #カートの中身を削除
-    redirect_to public_complete_order_path
+    redirect_to complete_order_path
   end
 
   # 注文完了画面
