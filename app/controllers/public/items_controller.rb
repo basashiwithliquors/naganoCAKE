@@ -11,5 +11,5 @@ class Public::ItemsController < ApplicationController
       redirect_to public_items_path
     end
   end
-
+ 
 end
