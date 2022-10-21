@@ -23,7 +23,6 @@ class Public::SessionsController < Devise::SessionsController
     ## 【処理内容3】
         redirect_to new_customer_registration_path, notice: "退会済みです。"
     else
-
     end
   end
 end
