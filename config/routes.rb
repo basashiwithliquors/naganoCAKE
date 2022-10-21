@@ -1,14 +1,8 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-  end
 # 顧客用
 # URL /customers/sign_in ...
-devise_for :customers,skip: [:passwords], controllers: {
+devise_for :customers, skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
@@ -33,12 +27,12 @@ end
 
 
 namespace :public do
-  get 'about' => "homes#about", as: 'about'
+  get 'about' => 'homes#about', as: 'about'
   resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
   resources :cart_items, only:[:index, :update, :destroy, :create]
   resources :items, only: [:index, :show]
 
-  # resource :customers, only: [:show, :edit, :update]
+  resource :customers, only: [:show, :edit, :update]
   get "customers/mypage" => "customers#show"
   get "customers/information/edit" => "customers#edit"
   patch "customers/information" => "customers#update"
