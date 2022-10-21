@@ -9,6 +9,7 @@
     <% @items.each do |item| %>
     <div class="col-md-3 mb-5 inline-block">
       <%= link_to item_path(item), class: "text-reset" do %>
+
       <div><%= image_tag item.get_image, size:'240x135' %></div>
       <div><%= item.name %></div>
       <div>¥<%= item.price_in_tax %></div>
