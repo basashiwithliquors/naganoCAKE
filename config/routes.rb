@@ -31,6 +31,29 @@ end
 
 namespace :public do
   get 'about' => "homes#about", as: 'about'
+<<<<<<< Updated upstream
+=======
+  resources :cart_items, only:[:index, :update, :destroy, :create] do
+    collection do
+      delete 'destroy_all'
+    end
+  end
+
+  resources :items, only: [:index, :show]
+  get 'orders/complete', to: 'orders#complete', as: 'complete_order'
+  resources :orders, only: [:new, :index, :create, :show]
+  post 'orders/confirm(/:id)', to: 'orders#confirm', as: 'confirm_order'
+
+
+  # resource :customers, only: [:show, :edit, :update]
+  get "customers/mypage" => "customers#show"
+  get "customers/information/edit" => "customers#edit"
+  patch "customers/information" => "customers#update"
+
+  get "customers/unsubscribe" => "customers#unsubscribe"
+  patch "customers/withdraw" => "customers#withdraw"
+
+>>>>>>> Stashed changes
   resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
   resources :cart_items, only:[:index, :update, :destroy, :create]
   resources :items, only: [:index, :show]
