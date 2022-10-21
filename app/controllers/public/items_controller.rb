@@ -8,7 +8,7 @@ class Public::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @cart_item = CartItem.new
     if @item.is_active == false
-      redirect_to public_items_path
+      redirect_to items_path
     end
   end
  
