@@ -2,6 +2,9 @@
   <div class="d-inline-block px-3 m-3 mb-4" style="background-color: #eee;">
     <h4 class="m-0">配送先登録/一覧</h2>
   </div>
+  <div id="error-message">
+    <%= render "layouts/errors", obj: @shipping_address %>
+  </div>
   <div>
     <%= render "address_form", shipping_address: @shipping_address %>
   </div>

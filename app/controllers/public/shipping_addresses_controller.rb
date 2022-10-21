@@ -1,11 +1,14 @@
 class Public::ShippingAddressesController < ApplicationController
 
+  before_action :authenticate_customer!
+  before_action :ensure_correct_customer,only: [:edit, :update, :destroy]
+
   def create
     @shipping_address = ShippingAddress.new(shipping_address_params)
     if @shipping_address.save
       @shipping_addresses = ShippingAddress.where(customer_id: current_customer.id)
     else
-      redirect_to request.referer
+      render "error"
     end
   end
 
@@ -16,9 +19,6 @@ class Public::ShippingAddressesController < ApplicationController
 
   def edit
     @shipping_address = ShippingAddress.find(params[:id])
-    if @shipping_address.customer != current_customer
-      redirect_to shipping_addresses_path
-    end
   end
 
   def update
@@ -26,7 +26,7 @@ class Public::ShippingAddressesController < ApplicationController
     if @shipping_address.update(shipping_address_params)
       redirect_to shipping_addresses_path
     else
-      redirect_to request.referer
+      render "error"
     end
   end
 
@@ -40,6 +40,13 @@ private
 
   def shipping_address_params
     params.require(:shipping_address).permit(:name, :address, :postcode).merge(customer_id: current_customer.id)
+  end
+  
+  def ensure_correct_customer
+    @shipping_address = ShippingAddress.find(params[:id])
+    unless @shipping_address.customer == current_customer
+      redirect_to shipping_addresses_path
+    end
   end
 
 end
