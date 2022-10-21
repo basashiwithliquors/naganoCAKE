@@ -25,7 +25,7 @@
       <!--/confirmに入っている金額の情報を持ってくるには？-->
       <td><%= order.billing_amount.to_s(:delimited) %></td>
       <td><%= order.order_status %></td>
-      <td><%= link_to "表示する", public_order_path(order) %></td>
+      <td><%= link_to "表示する", order_path(order) %></td>
     </tr>
   <% end %>
 </table>
