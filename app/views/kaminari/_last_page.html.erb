@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%# Link to the "Last" page
   - available local variables
     url:           url to the last page
@@ -9,3 +10,8 @@
 <span class="last">
   <%= link_to_unless current_page.last?, t('views.pagination.last').html_safe, url, remote: remote %>
 </span>
+=======
+<li class="page-item">
+  <%= link_to_unless current_page.last?, raw(t 'views.pagination.last'), url, remote: remote, class: 'page-link' %>
+</li>
+>>>>>>> origin/develop

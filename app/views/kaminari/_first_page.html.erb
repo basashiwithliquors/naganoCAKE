@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%# Link to the "First" page
   - available local variables
     url:           url to the first page
@@ -9,3 +10,8 @@
 <span class="first">
   <%= link_to_unless current_page.first?, t('views.pagination.first').html_safe, url, remote: remote %>
 </span>
+=======
+<li class="page-item">
+  <%= link_to_unless current_page.first?, raw(t 'views.pagination.first'), url, remote: remote, class: 'page-link' %>
+</li>
+>>>>>>> origin/develop

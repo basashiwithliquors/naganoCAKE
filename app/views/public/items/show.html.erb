@@ -1,0 +1,33 @@
+<%#販売ステータスが停止中のものは表示しないよう制限を入れる%>
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-4">
+      <%= image_tag @item.get_image, size:'320x180' %>
+    </div>
+    <div class="col-md-8">
+      <div><h4 class="font-weight-bold"><%= @item.name %></h4></div>
+      <div><p><%= @item.description %></p></div>
+      <div class="pt-4">
+        <h5 class="d-inline-block font-weight-bold">¥<%= @item.price_in_tax %></h5><small>（税込）</small>
+      </div>
+
+      <% if customer_signed_in? %>
+        <%= form_with model: @cart_item, local: true do |f| %>
+        <div class="row">
+          <div class="col-md-3 form-group">
+            <%= f.hidden_field :customer_id, :value => current_customer.id %>
+            <%= f.hidden_field :item_id, :value => @item.id %>
+            <%= f.select :quantity, *[1..10], {prompt: '個数選択'}, class: 'form-control cart_item_quantity' %>
+          </div>
+          <div class="col-md-5 form-group">
+            <%= f.submit "カートに入れる", class: 'btn btn-success p-2' %>
+          </div>
+        </div>
+        <% end %>
+      <% else %>
+        <div class="text-danger font-weight-bold">カートへの商品追加はログインが必要です</div>
+      <% end %>
+    </div>
+  </div>
+</div>
