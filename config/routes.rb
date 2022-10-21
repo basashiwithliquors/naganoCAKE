@@ -25,8 +25,6 @@ namespace :admin do
   resources :customers, only: [:index, :show, :edit, :update]
 end
 
-<<<<<<< HEAD
-
 namespace :public do
   get 'about' => 'homes#about', as: 'about'
   resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
