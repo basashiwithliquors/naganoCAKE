@@ -13,7 +13,7 @@ before_action :authenticate_customer!
   def update
    @customer = current_customer
    @customer.update(customer_params)
-   redirect_to public_customers_mypage_path
+   redirect_to customers_mypage_path
   end
 
   def unsubscribe

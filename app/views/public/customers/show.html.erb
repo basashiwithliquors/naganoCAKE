@@ -8,7 +8,7 @@
       <table>
        <tr>
          <th style="font-size: 26px;"><strong>登録情報　</strong></th>
-         <th><%= link_to '編集する', public_customers_information_edit_path, class: "btn btn-success", style:"font-weight:bold;" %></th>
+         <th><%= link_to '編集する', customers_information_edit_path, class: "btn btn-success", style:"font-weight:bold;" %></th>
        </tr>
       </table>
 
@@ -38,14 +38,14 @@
       	  <th><%= @customer.email %></th>
         </tr>
       </table>
-      <!--<table class="table table-hover">-->
-        <!--<thead>-->
-          <!--<th>配送先</th>-->
-          <!--<th>< %= link_to '一覧を見る', addresses_path, class: "btn btn-sm btn-primary" %></th>-->
-          <!--<th>注文履歴</th>-->
-          <!--<th>< %= link_to '一覧を見る', orders_path, class: "btn btn-sm btn-primary" %></th>-->
-        <!--</thead>-->
-      <!--</table>-->
+      <table class="table table-hover">
+        <thead>
+          <th>配送先</th>
+          <th><%= link_to '一覧を見る', addresses_path, class: "btn btn-sm btn-primary" %></th>
+          <th>注文履歴</th>
+          <th><%= link_to '一覧を見る', orders_path, class: "btn btn-sm btn-primary" %></th>
+        </thead>
+      </table>
     </div>
   </div>
 </div>
