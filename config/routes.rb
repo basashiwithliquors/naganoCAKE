@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'customers/index'
+    get 'customers/show'
+    get 'customers/edit'
+    get 'customers/update'
+  end
 # 顧客用
 # URL /customers/sign_in ...
 devise_for :customers,skip: [:passwords], controllers: {
@@ -13,19 +19,16 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
-# root to: "public/homes#top"
-# top
 root 'public/homes#top'
-# about
-# get 'about' => 'public/homes#about'
-
 
 namespace :admin do
+  root 'homes#top'
   resources :orders, only: [:show, :update] do
     resources :order_items, only: [:update]
   end
   resources :genres, only: [:index, :create, :edit, :update]
   resources :items, except: [:destroy]
+  resources :customers, only: [:index, :show, :edit, :update]
 end
 
 
