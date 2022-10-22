@@ -1,11 +1,12 @@
 <div class="container">
   <div class="d-inline-block px-3 m-3 mb-4" style="background-color: #eee;">
-    <h4>注文履歴詳細</h4>
+    <h4 class="m-0">注文履歴詳細</h4>
   </div>
 
+  <!--テーブルを横並びにするには-->
   <div class="flex-start justify-content">
-  <p><strong>注文情報</strong></p>
-  <table class="table table-responsive pt-4">
+  <p class="m-0"><strong>注文情報</strong></p>
+  <table class="table table-responsive pt-1 ">
     <tr class="thead-light table-bordered">
       <th>注文日</th>
       <td><%= l @order.created_at %></td>
@@ -26,8 +27,8 @@
     </tr>
   </table>
 
-  <p><strong>請求情報</strong></p>
-  <table class="table table-responsive  pt-4">
+  <p class="m-0"><strong>請求情報</strong></p>
+  <table class="table table-responsive pt-1">
     <tr class="thead-light table-bordered">
       <th>商品合計</th>
       <td><%= (@order.billing_amount - 800).to_s(:delimited) %></td>
@@ -43,8 +44,8 @@
   </table>
   </div>
 
-  <p><strong>注文内容</strong></p>
-  <table class="table table-responsive pt-4">
+  <p class="m-0"><strong>注文内容</strong></p>
+  <table class="table table-responsive pt-1">
     <thead class="thead-light table-bordered">
       <tr>
         <th>商品</th>
