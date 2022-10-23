@@ -3,7 +3,7 @@
     <h4 class="m-0">注文履歴一覧</h4>
   </div>
 
-  <table class="table table-responsive" width="100%">
+  <table class="table table-hover">
     <thead class="thead-light table-bordered">
       <tr>
         <th style="vertical-align: middle;">注文日</th>
@@ -29,9 +29,8 @@
             <%= order_item.item.name %><br>
           <% end %>
         </td>
-        <!--/confirmに入っている金額の情報を持ってくるには？-->
         <td style="vertical-align: middle;"><%= order.billing_amount.to_s(:delimited) %></td>
-        <td style="vertical-align: middle;"><%= order.order_status %></td>
+        <td style="vertical-align: middle;"><%= order.order_status_i18n %></td>
         <td style="vertical-align: middle;"><%= link_to "表示する", order_path(order), class: "btn btn-sm btn-primary", style: "font-weight:bold;" %></td>
       </tr>
     <% end %>
