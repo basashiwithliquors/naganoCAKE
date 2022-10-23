@@ -6,6 +6,10 @@ class Item < ApplicationRecord
   
   has_one_attached :image
   
+  validates :name, presence: true
+  validates :description, presence: true
+  validates :price_without_tax, presence: true, numericality: { only_integer: true }
+  
   def get_image
     if image.attached?
       image
@@ -14,11 +18,12 @@ class Item < ApplicationRecord
     end
   end
   
+  # 消費税を求める＋桁区切りを行うメソッド
   def price_in_tax
-    result = price_without_tax * 1.1
-    result.round.to_s(:delimited)
+    (price_without_tax * 1.1).floor.to_s(:delimited)
   end
-  
+
+  # 商品価格（税抜）を桁区切りで表示するメソッド
   def price_ex_tax
     price_without_tax.to_s(:delimited)
   end
