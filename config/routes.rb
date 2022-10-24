@@ -21,8 +21,8 @@ root 'public/homes#top'
 
 
 namespace :admin do
+  resources :orders, only: [:show, :index, :update] do
   root 'homes#top'
-  resources :orders, only: [:show, :update] do
     resources :order_items, only: [:update]
   end
   resources :genres, only: [:index, :create, :edit, :update]
