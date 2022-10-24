@@ -22,10 +22,12 @@ root 'public/homes#top'
 
 namespace :admin do
   resources :orders, only: [:show, :index, :update] do
+  root 'homes#top'
     resources :order_items, only: [:update]
   end
   resources :genres, only: [:index, :create, :edit, :update]
   resources :items, except: [:destroy]
+  resources :customers, only: [:index, :show, :edit, :update]
 end
 
 scope module: :public do

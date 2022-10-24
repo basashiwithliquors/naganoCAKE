@@ -1,2 +1,78 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<!DOCTYPE html>
+<div class="container">
+  <div class="row">
+    <div class='col-md-8'>
+      <div class="d-inline-block px-3 m-3" style="background-color: #eee;">
+        <h3 class="m-0">
+        <%= @customer.first_name %><%= @customer.last_name %>さんの会員情報編集</h3>
+      </div>
+
+      <%= form_with model: @customer, url: admin_customer_path(@customer), local:true, method: :patch do |f| %>
+      <table class="table table-borderless table-sm">
+        <div class="field">
+          <tr>
+          <td><%= f.label :"会員番号" %></td>
+          <td colspan='2'><%= @customer.id %></td>
+          </tr>
+        </div>
+        <div class="field">
+          <tr>
+          <td><%= f.label :"氏名" %></td>
+          <td><%= f.text_field :first_name, style: "margin-left:40px;", autocomplete: "first_name" %></td>
+          <td><%= f.text_field :last_name, style: "margin-left:40px;",autocomplete: "last_name" %></td>
+          </tr>
+        </div>
+
+        <div class="field">
+          <tr>
+          <td><%= f.label :"フリガナ" %></td>
+          <td><%= f.text_field :first_name_kana, style: "margin-left:40px;",autocomplete: "first_name_kana" %></td>
+          <td><%= f.text_field :last_name_kana,style: "margin-left:40px;", autocomplete: "last_name_kana" %></td>
+          </tr>
+        </div>
+
+        <div class="field">
+          <tr>
+          <td><%= f.label :"郵便番号" %></td>
+          <td><%= f.text_field :postcode, style: "margin-left:40px;",autocomplete: "postcode" %></td>
+          </tr>
+        </div>
+
+        <div class="field">
+          <tr>
+          <td><%= f.label :"住所" %></td>
+          <td><%= f.text_field :address, style: "margin-left:40px;",autocomplete: "address" %></td>
+          </tr>
+        </div>
+
+        <div class="field">
+          <tr>
+          <td><%= f.label :"電話番号" %></td>
+          <td><%= f.telephone_field :phone, style: "margin-left:40px;",autocomplete: "phone" %></td>
+          </tr>
+        </div>
+
+        <div class="field">
+          <tr>
+          <td><%= f.label :"メールアドレス" %></td>
+          <td><%= f.email_field :email, style: "margin-left:40px;",autocomplete: "email" %></td>
+          </tr>
+        </div>
+
+        <div class="actions">
+          <tr>
+          <td>会員ステータス</td>
+        　<td>
+          　<%= f.radio_button :is_deleted, false, style: "margin-left:40px;" %>
+            <%= f.label :is_deleted, "有効", value: :false %>
+            <%= f.radio_button :is_deleted, true %>
+          　<%= f.label :is_deleted, "退会", value: :true %>
+          </td>
+          </tr>
+        </div>
+      <div class="actions">
+        <tr>
+        <td><br><%= f.submit '変更を保持', class: 'btn btn-success' %></td></tr>
+      </div>
+    <% end %>
+  </table>

@@ -19,7 +19,7 @@
               <tr>
                 <td><%= customer.id %></td>
                 <td>
-                  <%= link_to admin_customers_path(customer), style: "text-decoration: underline;" do%>
+                  <%= link_to admin_customer_path(customer), style: "text-decoration: underline;" do%>
                     <%= customer.last_name %>　<%= customer.first_name %>
                   <% end %>
                 </td>
@@ -28,7 +28,7 @@
                 <% if customer.is_deleted == false %>
           　　　　　　<td class = "text-success font-weight-bold">有効</td>
             	  　<%else%>
-          　　　　　　<td class = "text-danger font-weight-bold">退会</td>
+          　　　　　　<td class = "text-secondary font-weight-bold">退会</td>
             	  <% end %>
 
               </tr>
