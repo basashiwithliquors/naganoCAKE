@@ -22,11 +22,12 @@ class Public::OrdersController < ApplicationController
 
       # [:address_option]=="1"を呼び出す
     elsif params[:order][:address_option] == "1"
-      ship = Address.find(params[:order][:customer_id])
+      if ShippingAddress.exists?(name: params[:order][:registered])
       #orderのcustomer_id(=カラム)でアドレス(帳)を選び、そのデータ送る
-      @order.postcode = ship.post_code
-      @order.address = ship.address
-      @order.name = ship.name
+        @order.postcode = ShippingAddress.exists?(name: params[:order][:registered]).postcode
+        @order.address = ShippingAddress.exists?(name: params[:order][:registered]).address
+        @order.name = ShippingAddress.exists?(name: params[:order][:registered]).name
+      end
 
       # 新規住所入力 [:address_option]=="2"としてデータをhtmlから受ける
     elsif params[:order][:address_option] = "2"
@@ -77,4 +78,5 @@ class Public::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:customer_id, :postage, :billing_amount, :payment_method, :name, :address, :postcode ,:order_status)
   end
+  
 end
