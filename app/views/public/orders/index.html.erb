@@ -1,31 +1,39 @@
-<h2>注文履歴一覧</h2>
+<div class="container">
+  <div class="d-inline-block px-3 m-3" style="background-color: #eee;">
+    <h4 class="m-0">注文履歴一覧</h4>
+  </div>
 
-<table>
-  <tr>
-    <th>注文日</th>
-    <th>配送先</th>
-    <th>注文商品</th>
-    <th>支払金額</th>
-    <th>ステータス</th>
-    <th>注文詳細</th>
-  </tr>
-  <% @orders.each do |order| %>
-    <tr>
-      <!-- lメソッドを使って書式を指定する -->
-      <td><%= l order.created_at %></td>
-      <td>〒<%= order.postcode %><br>
-        <%= order.address %><br>
-        <%= order.name %>
-      </td>
-      <td>
-        <% order.order_items.each do |order_item| %>
-          <%= order_item.item.name %><br>
-        <% end %>
-      </td>
-      <!--/confirmに入っている金額の情報を持ってくるには？-->
-      <td><%= order.billing_amount.to_s(:delimited) %></td>
-      <td><%= order.order_status %></td>
-      <td><%= link_to "表示する", order_path(order) %></td>
-    </tr>
-  <% end %>
-</table>
+  <table class="table table-hover">
+    <thead class="thead-light table-bordered">
+      <tr>
+        <th style="vertical-align: middle;">注文日</th>
+        <th style="vertical-align: middle;">配送先</th>
+        <th style="vertical-align: middle;">注文商品</th>
+        <th style="vertical-align: middle;">支払金額</th>
+        <th style="vertical-align: middle;">ステータス</th>
+        <th style="vertical-align: middle;">注文詳細</th>
+      </tr>
+    </thead>
+
+    <tbody class="table-bordered">
+    <% @orders.each do |order| %>
+      <tr>
+        <!-- lメソッドを使って書式を指定する -->
+        <td style="vertical-align: middle;"><%= l order.created_at %></td>
+        <td style="vertical-align: middle;">〒<%= order.postcode %><br>
+          <%= order.address %><br>
+          <%= order.name %>
+        </td>
+        <td style="vertical-align: middle;">
+          <% order.order_items.each do |order_item| %>
+            <%= order_item.item.name %><br>
+          <% end %>
+        </td>
+        <td style="vertical-align: middle;"><%= order.billing_amount.to_s(:delimited) %></td>
+        <td style="vertical-align: middle;"><%= order.order_status_i18n %></td>
+        <td style="vertical-align: middle;"><%= link_to "表示する", order_path(order), class: "btn btn-sm btn-primary", style: "font-weight:bold;" %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

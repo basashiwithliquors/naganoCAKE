@@ -4,10 +4,13 @@ ja: # 日本語の設定を行う
       payment_method: # カラム名（payment_methodカラムに対して）
         credit_card: "クレジットカード"
         transfer: "銀行振込"
-
-  time:
-    formats:
-      default: "%Y/%m/%d"
+        
+      order_status:
+        waiting_payment: "入金待ち"
+        payment_confirmation: "製作待ち"
+        production: "製作中"
+        shipping_preparation: "発送準備中"
+        sent: "発送済み"
       
   errors:
     format: "%{attribute}%{message}"
@@ -36,3 +39,16 @@ ja: # 日本語の設定を行う
       too_long: は%{count}文字以内で入力してください
       too_short: は%{count}文字以上で入力してください
       wrong_length: は%{count}文字で入力してください
+
+    order_item:
+      production_status: #製作ステータス
+        impossible_making: '着手不可'
+        waiting_for_making: '製作待ち'
+        making: '製作中'
+        complete: '製作完了'
+    
+  time:
+    formats:
+      default: "%Y/%m/%d"
+      short: "%Y/%m/%d %H:%M:%S"
+
