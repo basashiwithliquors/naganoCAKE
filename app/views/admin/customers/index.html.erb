@@ -19,7 +19,7 @@
               <tr>
                 <td><%= customer.id %></td>
                 <td>
-                  <%= link_to admin_customers_path(customer), style: "text-decoration: underline;" do%>
+                  <%= link_to admin_customer_path(customer), style: "text-decoration: underline;" do%>
                     <%= customer.last_name %>　<%= customer.first_name %>
                   <% end %>
                 </td>
