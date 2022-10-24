@@ -33,7 +33,7 @@
       <% @cart_items.each do |cart_item| %>
         <tr>
           <th>
-            <%= image_tag cart_item.item.get_image, size: "90x60" %>
+            <%= image_tag cart_item.item.get_image, size: '96x54' %>
             <%= cart_item.item.name %>
           </th>
           <th><div class="text-center"><%= cart_item.item.with_tax_price.to_s(:delimited) %></div></th>
