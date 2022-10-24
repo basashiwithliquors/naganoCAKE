@@ -2,8 +2,8 @@
   <div class="row">
     <div class="mx-auto">
       <div class = "top-image text-left">
-        <%= image_tag "c5.png", style:"position: relative;" %>
-          <p style="position:absolute; top:260px; left:540px; background-color:rgba(0,0,0,0.3); color:#FFF; font-size:18px;">
+        <%= image_tag "c4.png", style:"position: relative;" %>
+          <p style="position:absolute; top:322px; left:520px; background-color:rgba(0,0,0,0.3); color:#FFF; font-size:18px;">
             <br>
              &ensp; ようこそ、ながのCAKEへ！<br/>
              &ensp; このサイトは、ケーキ販売のECサイトになります。<br/>
@@ -29,7 +29,7 @@
 
           <% @items.each do |item| %>
             <div class="mr-4 mt-4">
-             <%= link_to admin_item_path(item) do %>
+             <%= link_to item_path(item) do %>
                <%= image_tag item.get_image, size:"200x120" %>
              <% end %>
              <p class="text-center"><strong><%= item.name %></strong></p>
