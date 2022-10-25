@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="d-inline-block px-3 m-3" style="background-color: #eee;">
+      <h4 class="m-0">注文履歴詳細</h4>
+    </div>
+      <!-- 購入詳細情報 -->
+      <div class="mb-4">
+        <table>
+          <tr>
+            <th>購入者</th>
+            <td class="pl-4">
+              <!--%= link_to admin_customer_path(@customer.id) do %>-->
+                <%= @order.customer.last_name %> <%= @order.customer.first_name %>
+              <!--% end %>-->
+            </td>
+          </tr>
+          <tr>
+            <th>注文日</th>
+            <td class="pl-4"><%= l @order.created_at %></td>
+          </tr>
+          <tr>
+            <th style="vertical-align: top;">配送先</th>
+            <td class="pl-4">〒<%= @order.postcode %> <%= @order.address %><br><%= @order.name %></td>
+          </tr>
+          <tr>
+            <th>支払い方法</th>
+            <td class="pl-4"><%= @order.payment_method_i18n %></td>
+          </tr>
+          <tr>
+            <!-- 注文ステータス変更 プルダウン 更新を押すとアップデート -->
+            <th>注文ステータス</th>
+            <td class="pl-4">
+              <%= form_with model: @order, url: admin_order_path do |f| %><!--oreder controllerのupdateの飛ぶ-->
+                <%= f.select :order_status, Order.order_statuses_i18n.invert, {}, placeholder: 0 %>
+                <%= f.submit "更新" ,class: "btn btn-primary btn-sm" %>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="row">
+    <div class="col-xs-6 mr-5">
+      <table class="table table-hover">
+        <thead class="thead-light border-top">
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th>製作ステータス</th>
+          <th></th>
+        </tr>
+        </thead>
+        <% @order_item.each do |order_item| %><!--注文した商品の履歴一覧をeach分で表示 -->
+        <tr>
+          <td><%= order_item.item.name %></td>
+          <td><%= ((order_item.item.price_without_tax)*1.1).floor.to_s(:delimited)  %></td>
+          <td><%= order_item.quantity %></td>
+          <td><%= ((order_item.item.price_without_tax)*1.1*(order_item.quantity)).floor.to_s(:delimited)  %> </td>
+        <!-- 製作ステータス変更 更新を押すと更新-->
+        <!-- rails routesでorder_itemを確認すると、order:idとorder_item:idが必要であるため、form_withのモデルとurlにそれぞれ指定する -->
+          <%= form_with model: [@order,order_item] , url: admin_order_order_item_path(@order, order_item), method: :patch, local: true  do |f| %>
+          <!--入力は日本語でよくて、値を送信するときは英語で送信する必要がある 調べ方：enum select もしくはenum pulldown -->
+          <!--<td>%= f.select :production_status,["着手不可","製作待ち","製作中","製作完了"] %></td>ステータス選択 -->
+          <td><%= f.select :production_status, OrderItem.production_statuses_i18n.invert, {}, placeholder: 0 %></td>
+
+          <td><%= f.submit "更新" ,class:"btn btn-primary btn-xs" %></td>
+          <% end %>
+        </tr>
+          <% end %>
+      </table>
+    </div>
+
+    <div class="col-xs-4">
+     <h5><strong>商品合計</strong>　　　<%= (@order.billing_amount-@order.postage).to_s(:delimited)  %>円</h4>
+     <h5><strong>送料</strong>　　　　　<%= @order.postage.to_s(:delimited) %>円</h4>
+     <h5><strong>請求金額合計　<%= @order.billing_amount.to_s(:delimited) %>円</strong></h4>
+    </div>
+  </div>
+</div>

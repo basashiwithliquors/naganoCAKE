@@ -1,0 +1,45 @@
+<div class="container mt-5 h-75">
+  <div class="row">
+    <div class="mx-auto">
+      <div class = "top-image text-left">
+        <%= image_tag "c4.png", style:"position: relative;" %>
+          <p style="position:absolute; top:322px; left:520px; background-color:rgba(0,0,0,0.3); color:#FFF; font-size:18px;">
+            <br>
+             &ensp; ようこそ、ながのCAKEへ！<br/>
+             &ensp; このサイトは、ケーキ販売のECサイトになります。<br/>
+             &ensp; 会員でない方も商品の閲覧はできますが、<br/>
+             &ensp; 購入には会員登録が必要になります。<br/>
+            <br/>
+          </p>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-9">
+            <table class="table mt-4">
+              <thead>
+                <tr>
+                  <th style="font-size:27px;">新着商品</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+        <div class="contents" style="display:flex; flex-wrap:wrap;">
+
+          <% @items.each do |item| %>
+            <div class="mr-4 mt-4">
+             <%= link_to item_path(item) do %>
+               <%= image_tag item.get_image, size:"200x120" %>
+             <% end %>
+             <p class="text-center"><strong><%= item.name %></strong></p>
+             <p class="text-center"><strong>￥<%= item.price_in_tax %></strong></p>
+            </div>
+          <% end %>
+        </div>
+
+        <p class="text-right">
+            <strong><%= link_to "全ての商品を見る>", items_path %></strong></p>
+      </div>
+    </div>
+  </div>

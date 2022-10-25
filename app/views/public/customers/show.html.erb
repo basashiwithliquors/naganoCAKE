@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<div class="container">
+  <div class="d-inline-block px-3 m-3" style="background-color: #eee;">
+    <h3 class="m-0">マイページ</h3>
+  </div>
+
+<div class="row">
+    <div class="col-xs-6 mr-5">
+      <div class="flex-start justify-content">
+      <table>
+       <tr>
+         <th style="font-size: 26px;"><strong>登録情報　</strong></th>
+         <th><%= link_to '編集する', customers_information_edit_path, class: "btn btn-success", style:"font-weight:bold;" %></th>
+       </tr>
+      </table>
+
+      <table class="table table-hover pt-1 ">
+        <tr class="thead-light table-bordered">
+      	  <th class="info">氏名</th>
+      	  <td><%= @customer.last_name %>　<%= @customer.first_name %></td>
+        </tr>
+         <tr class="thead-light table-bordered">
+      	  <th class="info">フリガナ</th>
+      	  <td><%= @customer.last_name_kana %>　<%= @customer.first_name_kana %></td>
+        </tr>
+         <tr class="thead-light table-bordered">
+      	  <th class="info">郵便番号</th>
+      	  <td><%= @customer.postcode %></td>
+        </tr>
+         <tr class="thead-light table-bordered">
+      	  <th class="info">住所</th>
+      	  <td><%= @customer.address %></td>
+        </tr>
+         <tr class="thead-light table-bordered">
+      	  <th class="info">電話番号</th>
+      	  <td><%= @customer.phone %></td>
+        </tr>
+         <tr class="thead-light table-bordered">
+      	  <th class="info">メールアドレス</th>
+      	  <td><%= @customer.email %></td>
+        </tr>
+      </table>
+      <table class="table table-borderless">
+        <thead>
+          <th>配送先</th>
+          <th><%= link_to '一覧を見る', shipping_addresses_path, class: "btn btn-sm btn-primary" %></th>
+          <th>注文履歴</th>
+          <th><%= link_to '一覧を見る', orders_path, class: "btn btn-sm btn-primary" %></th>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>
