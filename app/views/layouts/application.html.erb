@@ -15,7 +15,7 @@
       <nav class="navbar navbar-expand-lg ">
         <div class="container">
           <a class="navbar" href="/"><%= image_tag "/assets/Logo.png", size: "280x85" %></a>
-           <div class="collapse navbar-collapse" id="navbarNavDropdown">
+           <div class="collapse navbar-collapse row" id="navbarNavDropdown">
 
             <!--顧客用ヘッダー-->
             <% if customer_signed_in? %>
@@ -53,20 +53,26 @@
                  </ul>
 
             <% end %>
-
+          <!--検索フォーム-->
+              <div class="container justify-content-end pt-3">
+                <div class="row">
+                  <div class="col-ml-auto mr-4">
+                    <%= form_with url: items_path, method: :get do |f| %>
+                    <div class="input-group">
+                      <%= f.text_field :word, placeholder: "Search", class: "input-group-prepend" %>
+                      <span class="input-group-btn">
+                        <%= f.button :type => "submit" do %><i class="fas fa-search"></i><% end %>
+                      </span>
+                    </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+          <!--検索フォームここまで-->
             </div>
           </div>
         </nav>
-    <!--検索フォーム-->
-    <!--<div class="container">-->
-    <!--  <div class="row justify-content-end pb-3">-->
-    <!--    <div class="col-ml-auto mr-4">-->
-    <!--      <form class="d-flex">-->
-    <!--        <input type="text" placeholder="Search">-->
-    <!--      </form>-->
-    <!--    </div>-->
-    <!--  </div>-->
-    <!--</div>-->
+    
     
     </header>
     
