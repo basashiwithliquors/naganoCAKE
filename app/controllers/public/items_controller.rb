@@ -2,11 +2,17 @@ class Public::ItemsController < ApplicationController
 
   def index
     @genres = Genre.all
-    if params[:genre] == nil
-      @items = Item.where(is_active: true).order(created_at: :desc).page(params[:page]).per(8)
+    if params[:genre] != nil
+      @genre_p = params[:genre]
+      @genre_search = Item.where(is_active: true, genre_id: @genre_p)
+      @items = @genre_search.order(created_at: :desc).page(params[:page]).per(8)
+      @genre = Genre.find_by(id: @genre_p)
+    elsif params[:word] != nil
+      @word = params[:word]
+      @word_search = Item.where(is_active: true).where("name like ?", "%#{@word}%")
+      @items = @word_search.order(created_at: :desc).page(params[:page]).per(8)
     else
-      @items = Item.where(is_active: true, genre_id: params[:genre]).order(created_at: :desc).page(params[:page]).per(8)
-      @genre = Genre.find_by(id: params[:genre])
+      @items = Item.where(is_active: true).order(created_at: :desc).page(params[:page]).per(8)
     end
   end
 

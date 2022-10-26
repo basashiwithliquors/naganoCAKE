@@ -7,10 +7,12 @@
     <div class="col-md-10">
       <div class="row">
         <div class= "my-4 px-4">
-          <% if params[:genre] == nil %>
-            <h4 class="d-inline-block">商品一覧</h4>（全<%= Item.where(is_active: true).count %>件）
+          <% if @genre_p != nil %>
+            <h4 class="d-inline-block"><%= @genre.name %>一覧</h4>（全<%= @genre_search.count %>件）
+          <% elsif params[:word] != nil%>
+            <h4 class="d-inline-block">"<%= @word %>"の検索結果</h4>（全<%= @word_search.count %>件）
           <% else %>
-            <h4 class="d-inline-block"><%= @genre.name %>一覧</h4>（全<%= Item.where(is_active: true, genre_id: params[:genre]).count %>件）
+            <h4 class="d-inline-block">商品一覧</h4>（全<%= Item.where(is_active: true).count %>件）
           <% end %>
         </div>
       </div>
